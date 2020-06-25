@@ -1,8 +1,8 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const webpack = require('webpack')
-const path = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = env => {
 	return {
@@ -12,7 +12,7 @@ module.exports = env => {
 		},
 		output: {
 			filename: '[name].bundle.js',
-			path: path.resolve(__dirname, 'build')
+			path: path.resolve(__dirname, 'dist')
 		},
 		module: {
 			rules: [
@@ -30,7 +30,7 @@ module.exports = env => {
 					use: {
 						loader: 'babel-loader',
 						options: {
-							presets: [['@babel/preset-env', { targets: { chrome: 36 } }]]
+							presets: [['@babel/preset-env']]
 						}
 					}
 				},
@@ -96,7 +96,7 @@ module.exports = env => {
 		},
 		devtool: env.NODE_ENV === 'dev' ? 'inline-source-map' : 'source-map',
 		devServer: {
-			contentBase: path.resolve(__dirname, 'build'),
+			contentBase: path.resolve(__dirname, 'dist'),
 			compress: true,
 			port: 3060,
 			headers: {
