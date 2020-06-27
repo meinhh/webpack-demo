@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
@@ -89,7 +91,8 @@ module.exports = env => {
 				from: path.join(__dirname, 'copyFolder'),
 				to: './copiedFolder'
 			}]),
-			new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true })
+			new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
+			new HtmlWebpackPlugin({template: './index.html'}),
 		],
 		stats: {
 			colors: true
@@ -99,6 +102,9 @@ module.exports = env => {
 			contentBase: path.resolve(__dirname, 'dist'),
 			compress: true,
 			port: 3060,
+			proxy: {
+				'/api': 'http://localhost:3000',
+			},
 			headers: {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
@@ -106,4 +112,4 @@ module.exports = env => {
 			}
 		}
 	}
-}
+};

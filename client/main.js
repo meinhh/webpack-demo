@@ -1,7 +1,5 @@
-import 'main.scss';
-import setText from './setText.ts';
-const johnny = new setText();
+import {AppComponent} from "./src/app/app.component";
+import angular from 'angular';
 
-window.a = () => {
-	johnny.setText();
-}
+angular.module('app', [])
+	.component('app', AppComponent.factory());
