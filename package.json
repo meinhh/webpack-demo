@@ -2,21 +2,19 @@
   "name": "webpack-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/server.ts",
   "scripts": {
-    "postinstall": "cd client && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "serve": "cd client && npm start",
+    "install-client": "cd client && npm install",
+    "install-server": "cd server && npm install",
+    "postinstall": "npm run install-client && npm run install-server",
+    "test-client": "cd client && npm run test",
+    "test-server": "cd server && npm run test",
+    "test": "npm run test-server && npm run test-client",
+    "start": "node server/server.ts",
+    "serve": "cd client && npm serve",
     "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "compression": "^1.7.4",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {}
+  "license": "ISC"
 }
